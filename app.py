@@ -1,60 +1,43 @@
+#import streamlit as st
+#st.title("Olá, eu sou gangster")
+#st.sidebar.title("sou fã do matuê")
+#st.sidebar.image("matue.png")
+
 import streamlit as st
-
-# python -m streamlit run app.py
-
-# ------------------------------------------------- Sidebar
-
+st.title("Veloz Motors - Aluguel de Carros")
+st.sidebar.title("Escolha o seu Modelo ")
 st.sidebar.image("logo.png")
-st.sidebar.title('Mateus Motors')
 
+carros = ["Nissan Skyline GT-R","Toyota Supra","Dodge Challenger","Chevrolet Impala 70"]
 
-carros = ['BMW','Mustang', 'Porsche', 'Fusca', 'Toro']
+opcao = st.sidebar.selectbox("Escolha o carro que deseja alugar", carros)
 
-opcao = st.sidebar.selectbox('Escolha o carro que foi alugado', carros)
+st.image(f"{opcao}.png")
+st.markdown(f"## Você alugou o modelo: {opcao}")
+st.markdown("-----------------------------------")
 
+dias = st.text_input(f"Por quantos dias o {opcao} foi alugado?")
+km = st.text_input(f"Quantos km você rodou com o {opcao}?") 
 
+if opcao == "Nissan Skyline GT-R":
+    diaria = 8000
 
-# ----------------------------------------------- Principal 
-st.title('Mateus motors - Aluguel de Carros')
+elif opcao == "Toyota Supra":
+    diaria = 4000
 
-st.image(f'{opcao}.png')
-st.markdown(f'## Você alugou o modelo: {opcao}')
-st.markdown('---')
+elif opcao == "Dodge Challenger":
+    diaria = 2500
 
-dias = st.text_input(f'Por quantos dias o {opcao} foi alugado?')
-km = st.text_input(f'Quantos km você rodou com o {opcao}?')
+elif opcao == "Chevrolet Impala 70": 
+    diaria = 5000    
 
-if opcao == 'BMW':
-    diaria = 450
-
-elif opcao == 'Mustang':
-    diaria = 500
-
-elif opcao == 'Porsche':
-    diaria = 300
-
-elif opcao == 'Fusca':
-    diaria = 250
-
-elif opcao == 'Toro':
-    diaria = 550
-
-
-
-
-
-if st.button('Calcular'):
+if st.button("Cacular"):
     dias = int(dias)
     km = float(km)
 
     total_dias = dias * diaria
     total_km = km * 0.15
-    aluguel_total = total_dias+total_km
+    aluguel_total = total_dias + total_km
 
-    st.warning(f'Você alugou o {opcao} por {dias} dias e rodou {km}km. O valor total a pagar é R${aluguel_total:.2f}')
-
-
-
-
-
-
+    st.warning(f"Você alugou o {opcao} por {dias} dias que rodou {km}km. O valor total a pagar é R${aluguel_total:.2f}")
+    
